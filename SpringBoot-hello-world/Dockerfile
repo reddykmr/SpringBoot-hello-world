@@ -1,10 +1,10 @@
 # Start with a base image containing Java runtime
-FROM java:8
+FROM openjdk:8
 
 # Make port 8080 available to the world outside this container
-EXPOSE 8080
+EXPOSE 8085
 
-ADD target/spring-boot-docker-maven.jar spring-boot-docker-maven.jar
+ADD target/SpringBoot-hello-world.jar SpringBoot-hello-world.jar
 
 # Run the jar file 
-ENTRYPOINT ["java","-jar","SpringBoot-hello-world-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","SpringBoot-hello-world.jar"]
