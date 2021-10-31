@@ -86,6 +86,7 @@ class SpringBootHelloWorldApplicationTests {
 		    emp=controller.showEmpData();
 		    System.out.println(emp.getId());
 		    assertNotNull(emp.getName());
+		    System.out.println();
 		
 	}
 	
