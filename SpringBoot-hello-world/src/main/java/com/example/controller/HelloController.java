@@ -24,9 +24,7 @@ public class HelloController {
 
 	@PostMapping(value = "/saveEmpData", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String saveEmpData() throws RecordNotFoundException {
-		Employee emp = new Employee();
-		emp.setId(100);
-		emp.setName("mahesh");
+		Employee emp = null;
 		String text = empService.save(emp);
 		return text;
 
