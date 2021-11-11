@@ -1,28 +1,23 @@
 package com.javainuse.step;
 
-import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.NonTransientResourceException;
-import org.springframework.batch.item.ParseException;
-import org.springframework.batch.item.UnexpectedInputException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class Reader implements ItemReader<String> {
+import org.springframework.batch.item.database.JdbcCursorItemReader;
 
-	private String[] messages = { "javainuse.com",
-			"Welcome to Spring Batch Example",
-			"We use H2 Database for this example" };
+import com.example.model.Employee;
+
+public class Reader extends JdbcCursorItemReader<Employee> {
 
 	private int count = 0;
 
 	@Override
-	public String read() throws Exception, UnexpectedInputException,
-			ParseException, NonTransientResourceException {
-
-		if (count < messages.length) {
-			return messages[count++];
-		} else {
-			count = 0;
-		}
-		return null;
+	public Employee readCursor(ResultSet rs, int currentRow) throws SQLException {
+		Employee employee=new Employee();
+	      employee.setId(rs.getInt("id"));
+	      employee.setName("name");
+	     return employee;
 	}
+	
 
 }

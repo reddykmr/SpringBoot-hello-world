@@ -26,4 +26,5 @@ public class JobInvokerController {
  
         return "Batch job has been invoked";
     }
+    
 }

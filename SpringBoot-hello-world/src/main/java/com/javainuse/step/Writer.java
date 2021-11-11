@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.batch.item.ItemWriter;
 
-public class Writer implements ItemWriter<String> {
+import com.example.model.Employee;
+
+public class Writer implements ItemWriter<Employee> {
 
 	@Override
-	public void write(List<? extends String> messages) throws Exception {
-		for (String msg : messages) {
-			System.out.println("Writing the data " + msg);
-		}
+	public void write(List<? extends Employee> items) throws Exception {
+		    
+		
 	}
 
 }
