@@ -31,16 +31,21 @@ public class HelloController {
 
 	@GetMapping(value = "/hello")
 	public String showHome() {
+		
 		String text = "Hello";
 		return text;
+		
+		
 	}
 
 	@PostMapping(value = "/saveEmpData", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String saveEmpData() throws RecordNotFoundException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+		  
 		  JobParameters jobParameter=new JobParametersBuilder().addLong("time", System.currentTimeMillis()).toJobParameters();
 		  jobLauncher.run(job, jobParameter);
 		  Employee emp = null;
-		String text = empService.save(emp);
+		  String text = empService.save(emp);
+		
 		return text;
 
 	}
