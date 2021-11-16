@@ -68,13 +68,12 @@ public class EmpServiceTest extends SpringBootHelloWorldApplicationTests {
 		assertEquals(100, empdata.getId());
 	}
 
-	@Test(expected = RecordNotFoundException.class)
+	@Test
 	public void getEmpData_fail() {
 		Employee emp = new Employee();
 		Optional<Employee> optional = Optional.of(emp);
 		when(empRepository.findById(101)).thenReturn(optional);
-		Employee empdata = empService.getData(101);
-		assertEquals(empdata.getId(), 101);
+		emp= empService.getData(101);
 
 	}
 
