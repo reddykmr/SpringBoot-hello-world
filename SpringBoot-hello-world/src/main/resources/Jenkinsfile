@@ -1,0 +1,45 @@
+node {
+    def targetBranch ='dev'
+    def credentialsId = 'genkins-reddykmr-github-token'
+
+    performSCM('https://' + env.SCM_URL, targetBranch, credentialsId)
+    try {
+
+        stage('Build preparation'){
+            env.WORKSPACE = pwd()
+            def mvnHome = tool 'MAVEN_v3.6.3'
+            env.PATH = "${mvnHome}/bin:$PATH"
+        }
+        stage('Build'){
+            sh "mvn install -U"
+        }
+        stage('Push to Sonar'){
+            sh "mvn sonar:sonar
+        }
+
+    } catch (e) {
+    } finally {
+        deleteDir()
+    }
+}
+
+/* Helper functions */
+
+def getMvnHome(){
+    def mvnHome = tool name: 'MAVEN-3.3.9-auto', type: 'hudson.tasks.Maven$MavenInstallation'
+    return mvnHome+"/bin"
+}
+
+def performSCM(repo, branch, credentialsId) {
+    checkout scm: [
+            $class: 'GitSCM',
+            branches: [[name: branch]],
+            extensions: [[$class: 'LocalBranch', localBranch: branch]],
+            userRemoteConfigs: [
+                    [
+                            credentialsId: credentialsId,
+                            url: repo
+                    ]
+            ]
+    ]
+}
