@@ -114,7 +114,6 @@
 
 
 		</plugins>
-		<finalName>SpringBoot-hello-world</finalName>
 	</build>
 
 </project>
