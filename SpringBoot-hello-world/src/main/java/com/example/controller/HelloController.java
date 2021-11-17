@@ -43,7 +43,8 @@ public class HelloController {
 		  
 		  JobParameters jobParameter=new JobParametersBuilder().addLong("time", System.currentTimeMillis()).toJobParameters();
 		  jobLauncher.run(job, jobParameter);
-		  Employee emp = null;
+		  Employee emp = new Employee();
+		  emp.setId(200);
 		  String text = empService.save(emp);
 		
 		return text;

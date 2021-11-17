@@ -24,7 +24,7 @@ public class EmpService {
 	public String save(Employee emp) {
 		
 		if(emp== null) {
-			throw new RecordNotFoundException("Record Data Found");
+			throw new RecordNotFoundException("Record Data Not Found");
 		}
 		else {
 			empRepository.save(emp);
